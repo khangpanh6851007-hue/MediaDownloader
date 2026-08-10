@@ -38,6 +38,6 @@ Trình Tải Video & Âm Thanh Đa Năng là một mã nguồn HTML/CSS/JavaScri
 
 ## 📄 Bản Quyền & Tác Giả
 
-* **Phiên bản:** 5.0
+* **Phiên bản:** 9.0
 * **Năm phát hành:** 2026
 * **Bản quyền:** &copy; 2026 Bản Quyền Của KhangPanh68 &reg;

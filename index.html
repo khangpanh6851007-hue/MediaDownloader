@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trình Tải Video & Âm Thanh Đa Năng</title>
+    <title>Trình Tải Video & Âm Thanh Đa Năng - VIP 12.0</title>
     <!-- Font Awesome cho icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --bg-gradient: radial-gradient(circle at top, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.15);
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-glow: 0 0 20px rgba(99, 102, 241, 0.3);
         }
 
         * {
@@ -30,7 +29,7 @@
             background: var(--bg-gradient);
             color: var(--text-color);
             min-height: 100vh;
-            padding: 20px 15px;
+            padding: 25px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,16 +42,15 @@
 
         /* Widget Đồng hồ & Lịch */
         .datetime-widget {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(12px);
-            border-radius: 14px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
+            background: #0f172a;
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
         .datetime-widget .date-box {
@@ -60,38 +58,37 @@
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: #cbd5e1;
+            font-weight: 500;
         }
 
         .datetime-widget .date-box i {
-            color: #60a5fa;
+            color: #38bdf8;
+            font-size: 1rem;
         }
 
         .datetime-widget .clock-box {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #c084fc;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fb7185;
         }
 
         .datetime-widget .clock-box i {
-            color: #c084fc;
+            color: #f43f5e;
         }
 
-        /* Header Style */
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #60a5fa, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #60a5fa;
             margin-bottom: 6px;
         }
 
@@ -100,68 +97,51 @@
             font-size: 0.9rem;
         }
 
-        /* Nút Hướng Dẫn Sử Dụng */
         .guide-btn-wrapper {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             text-align: center;
         }
 
         .guide-btn {
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            background: #4f46e5;
             color: white;
             border: none;
-            outline: none;
-            padding: 12px 20px;
-            border-radius: 12px;
+            padding: 14px 20px;
+            border-radius: 14px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s ease;
+            gap: 10px;
             width: 100%;
             justify-content: center;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
         }
 
-        .guide-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.6);
-        }
-
-        /* Modal Hướng Dẫn */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 9999;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
+            background-color: rgba(2, 6, 23, 0.9);
             padding: 20px;
         }
 
         .modal-content {
             background: #1e1b4b;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             width: 100%;
             max-width: 440px;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            animation: fadeIn 0.3s ease;
+            margin: 30px auto;
+            border-radius: 18px;
+            padding: 22px;
             max-height: 80vh;
             overflow-y: auto;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-header {
@@ -170,11 +150,11 @@
             align-items: center;
             margin-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         .modal-header h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #60a5fa;
             display: flex;
             align-items: center;
@@ -184,19 +164,15 @@
         .close-btn {
             background: transparent;
             border: none;
-            color: var(--text-muted);
-            font-size: 1.2rem;
+            color: #f43f5e;
+            font-size: 1.5rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover {
-            color: #fff;
         }
 
         .modal-body {
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: #cbd5e1;
             line-height: 1.6;
         }
 
@@ -207,19 +183,12 @@
             gap: 10px;
         }
 
-        .modal-body li strong {
-            color: var(--text-color);
-        }
-
-        /* Search / Input Box simulation */
         .search-box {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            backdrop-filter: blur(12px);
             border-radius: 14px;
             padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: var(--accent-glow);
+            margin-bottom: 25px;
         }
 
         .search-box input {
@@ -231,25 +200,28 @@
             font-size: 0.95rem;
         }
 
-        .search-box input::placeholder {
-            color: var(--text-muted);
+        .category-section {
+            margin-bottom: 25px;
         }
 
-        /* Links Section */
         .section-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #38bdf8;
             margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 3px solid #38bdf8;
+            padding-left: 8px;
         }
 
         .link-grid {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 25px;
         }
 
         .link-btn {
@@ -258,22 +230,12 @@
             justify-content: space-between;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
             padding: 14px 18px;
-            border-radius: 12px;
+            border-radius: 14px;
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            font-size: 0.92rem;
         }
 
         .link-btn .left-info {
@@ -282,203 +244,160 @@
             gap: 12px;
         }
 
-        .link-btn i.fa-youtube { color: #ef4444; }
-        .link-btn i.fa-facebook { color: #3b82f6; }
-        .link-btn i.fa-tiktok { color: #06b6d4; }
-        .link-btn i.fa-instagram { color: #ec4899; }
-        .link-btn i.fa-threads { color: #ffffff; }
-        .link-btn i.fa-globe { color: #38bdf8; }
-        .link-btn i.fa-file-audio { color: #facc15; }
-        .link-btn i.fa-download { color: #10b981; }
-
-        .link-btn .fa-chevron-right {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            transition: transform 0.2s;
-        }
-
-        .link-btn:hover .fa-chevron-right {
-            transform: translateX(3px);
-            color: var(--text-color);
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             margin-top: auto;
-            padding-top: 15px;
+            padding-top: 20px;
             border-top: 1px solid var(--card-border);
             width: 100%;
         }
     </style>
+
+    <script>
+        function toggleGuide(status) {
+            var m = document.getElementById('guideModal');
+            if (m) {
+                m.style.display = status ? 'block' : 'none';
+            }
+        }
+    </script>
 </head>
 <body>
 
     <div class="container">
-        <!-- Widget Hiển Thị Đồng Hồ & Lịch Tự Động -->
+        <!-- Widget Đồng hồ & Lịch Tự Động -->
         <div class="datetime-widget">
             <div class="date-box">
                 <i class="fa-regular fa-calendar-days"></i>
-                <span id="current-date">--/--/----</span>
+                <span id="current-date">Đang tải...</span>
             </div>
             <div class="clock-box">
                 <i class="fa-regular fa-clock"></i>
-                <span id="current-time">--:--:--</span>
+                <span id="current-time">00:00:00</span>
             </div>
         </div>
 
-        <!-- Header -->
         <header>
-            <h1>Media Downloader 9.0</h1>
-            <p>Hỗ trợ tải video & MP3 tốc độ cao HD+</p>
+            <h1>Media Downloader 12.0</h1>
+            <p>Hệ Thống Tải Đa Năng Cao Cấp • Full HD+</p>
         </header>
 
-        <!-- Nút Hướng Dẫn Sử Dụng -->
         <div class="guide-btn-wrapper">
-            <button class="guide-btn" onclick="openModal()">
+            <button type="button" class="guide-btn" onclick="toggleGuide(true)">
                 <i class="fa-solid fa-circle-question"></i> Hướng Dẫn Sử Dụng Website
             </button>
         </div>
 
-        <!-- Khung nhập link minh họa -->
         <div class="search-box">
             <input type="text" placeholder="Dán link Video YouTube, TikTok, Facebook vào đây..." readonly>
         </div>
 
-        <!-- Danh sách các nút liên kết -->
-        <div class="section-title">Danh sách công cụ tải</div>
-        
-        <div class="link-grid">
-            <!-- 1 -->
-            <a href="https://vww-y2mate.com/vi4/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-youtube fa-lg"></i>
-                    <span>YouTube Thành Mp3</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 2 -->
-            <a href="https://vi.savemp3.net/jbdel/youtube-video-to-mp3/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-youtube fa-lg"></i>
-                    <span>YouTube Thành Mp4</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 3 -->
-            <a href="https://fsave.net/vi" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-facebook fa-lg"></i>
-                    <span>Tải Video Facebook</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 4 -->
-            <a href="https://snapsave.vn/facebook" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-facebook fa-lg"></i>
-                    <span>Download Facebook Không Logo</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 5 -->
-            <a href="https://fdown.vn/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-facebook fa-lg"></i>
-                    <span>Download Facebook Thành Mp3</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 6 -->
-            <a href="https://snaptik.vn/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-tiktok fa-lg"></i>
-                    <span>Download TikTok Không Logo</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 7 -->
-            <a href="https://odex.vn/tien-ich/tai-video-tiktok/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-tiktok fa-lg"></i>
-                    <span>SnapTik (TikTok Download)</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 8 -->
-            <a href="https://tobi.ie/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-solid fa-download fa-lg"></i>
-                    <span>Tải Video TikTok (Tobi)</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 9 -->
-            <a href="https://savekit.io/vi/instagram-video-downloader" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-instagram fa-lg"></i>
-                    <span>Tải Video Instagram</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 10 -->
-            <a href="https://savethreads.io/vi" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-brands fa-threads fa-lg"></i>
-                    <span>Tải Video Threads</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 11 -->
-            <a href="https://searchenginereports.net/vi/video-downloader" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-solid fa-globe fa-lg"></i>
-                    <span>TẢI VIDEO TRỰC TUYẾN TỪ WEBSITE</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 12 -->
-            <a href="https://www.freeconvert.com/convert/video-to-mp3" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-solid fa-file-audio fa-lg"></i>
-                    <span>Chuyển đổi video sang MP3</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 13 -->
-            <a href="https://convertio.co/vn/mp4-mp3/" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-solid fa-file-audio fa-lg"></i>
-                    <span>Bộ chuyển đổi MP4 sang MP3</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <!-- 14 -->
-            <a href="https://downloadvideo.vn/vi" target="_blank" class="link-btn">
-                <div class="left-info">
-                    <i class="fa-solid fa-download fa-lg"></i>
-                    <span>Tải video TikTok, Facebook, Shopee & Instagram</span>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
+        <!-- Mục 1: YouTube -->
+        <div class="category-section">
+            <div class="section-title"><i class="fa-brands fa-youtube"></i> Mục YouTube</div>
+            <div class="link-grid">
+                <a href="https://vi.savemp3.net/jbdel/youtube-video-to-mp3/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-youtube fa-lg" style="color: #ef4444;"></i><span>YouTube Thành Mp4</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://yt1s.blog/vi4/youtube-to-mp3/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-youtube fa-lg" style="color: #ef4444;"></i><span>YTS1 YouTube Thành Mp3, Mp4</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://yt5s.in/vi270/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-youtube fa-lg" style="color: #ef4444;"></i><span>YouTube Yt5s</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://yt5s.biz/viwr200/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-cloud-arrow-down fa-lg" style="color: #38bdf8;"></i><span>YT5S Bản Mới (YT, FB, IG, Twitter)</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://liteapks.com/download/youtube-vanced-134" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-mobile-screen-button fa-lg" style="color: #a855f7;"></i><span>LiteApk Không Quảng Cáo (YouTube & microG)</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- Footer -->
+        <!-- Mục 2: Facebook -->
+        <div class="category-section">
+            <div class="section-title"><i class="fa-brands fa-facebook"></i> Mục Facebook</div>
+            <div class="link-grid">
+                <a href="https://fsave.net/vi" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-facebook fa-lg" style="color: #3b82f6;"></i><span>Tải Video Facebook</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://snapsave.vn/facebook" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-facebook fa-lg" style="color: #3b82f6;"></i><span>Download Facebook Không Logo</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://fdown.vn/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-facebook fa-lg" style="color: #3b82f6;"></i><span>Download Facebook Thành Mp3</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mục 3: MP3 & Âm Thanh -->
+        <div class="category-section">
+            <div class="section-title"><i class="fa-solid fa-file-audio"></i> Mục MP3 & Âm Thanh</div>
+            <div class="link-grid">
+                <a href="https://vww-y2mate.com/vi4/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-youtube fa-lg" style="color: #ef4444;"></i><span>YouTube Thành Mp3</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://www.freeconvert.com/convert/video-to-mp3" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-file-audio fa-lg" style="color: #facc15;"></i><span>Chuyển đổi video sang MP3</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://convertio.co/vn/mp4-mp3/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-file-audio fa-lg" style="color: #facc15;"></i><span>Bộ chuyển đổi MP4 sang MP3</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mục 4: TikTok, Instagram & Mạng Xã Hội Khác -->
+        <div class="category-section">
+            <div class="section-title"><i class="fa-brands fa-tiktok"></i> TikTok, Instagram & Tiện ích khác</div>
+            <div class="link-grid">
+                <a href="https://snaptik.vn/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-tiktok fa-lg" style="color: #06b6d4;"></i><span>Download TikTok Không Logo</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://odex.vn/tien-ich/tai-video-tiktok/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-tiktok fa-lg" style="color: #06b6d4;"></i><span>SnapTik (TikTok Download)</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://tobi.ie/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-download fa-lg" style="color: #10b981;"></i><span>Tải Video TikTok (Tobi)</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://zefoy.com/" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-bolt fa-lg" style="color: #f97316;"></i><span>Zefoy Tăng Like, Following, view Tiktok</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://savekit.io/vi/instagram-video-downloader" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-instagram fa-lg" style="color: #ec4899;"></i><span>Tải Video Instagram</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://savethreads.io/vi" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-brands fa-threads fa-lg" style="color: #ffffff;"></i><span>Tải Video Threads</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://downloadvideo.vn/vi" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-download fa-lg" style="color: #10b981;"></i><span>Tải video TikTok, FB, Shopee & Instagram</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+                <a href="https://searchenginereports.net/vi/video-downloader" target="_blank" class="link-btn">
+                    <div class="left-info"><i class="fa-solid fa-globe fa-lg" style="color: #38bdf8;"></i><span>TẢI VIDEO TRỰC TUYẾN TỪ WEBSITE</span></div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                </a>
+            </div>
+        </div>
+
         <footer>
             <p>&copy; 2026 © Bản Quyền Của KhangPanh68 ®</p>
         </footer>
@@ -489,59 +408,57 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3><i class="fa-solid fa-book-open"></i> Hướng Dẫn Sử Dụng</h3>
-                <button class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="close-btn" onclick="toggleGuide(false)">&times;</button>
             </div>
             <div class="modal-body">
                 <ol>
-                    <li><strong>Bước 1:</strong> Chọn và sao chép (Copy) đường link video hoặc bài hát cần tải từ ứng dụng gốc (YouTube, TikTok, Facebook).</li>
-                    <li><strong>Bước 2:</strong> Chọn đúng nút công cụ tương ứng với nền tảng bạn muốn tải ở danh sách bên dưới (ví dụ: Tải TikTok không logo, YouTube thành MP3...).</li>
-                    <li><strong>Bước 3:</strong> Trình duyệt sẽ mở trang web hỗ trợ tương ứng trong tab mới. Tại đó, bạn dán (Paste) link vừa sao chép vào ô trống.</li>
-                    <li><strong>Bước 4:</strong> Nhấn nút tải xuống và chờ hệ thống xử lý để lưu file về máy điện thoại của bạn.</li>
+                    <li><strong>Bước 1:</strong> Chọn và sao chép đường link video cần tải từ ứng dụng gốc.</li>
+                    <li><strong>Bước 2:</strong> Chọn đúng nút công cụ tương ứng với nền tảng ở danh sách bên dưới.</li>
+                    <li><strong>Bước 3:</strong> Dán link vừa sao chép vào ô trống trên trang mở ra.</li>
+                    <li><strong>Bước 4:</strong> Nhấn nút tải xuống để lưu file về điện thoại.</li>
                 </ol>
             </div>
         </div>
     </div>
 
-    <!-- Script tự động cập nhật Lịch, Đồng hồ và tính năng mở/đóng Modal -->
+    <!-- HỆ THỐNG ĐỒNG HỒ & LỊCH TỰ CHẠY TRỰC TIẾP CHO TREBEDIT -->
     <script>
-        function updateDateTime() {
-            const now = new Date();
+        (function() {
+            function updateClock() {
+                var now = new Date();
+                
+                var days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+                var dayName = days[now.getDay()];
+                var dd = now.getDate();
+                var mm = now.getMonth() + 1;
+                var yyyy = now.getFullYear();
+                
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+                
+                var dateElem = document.getElementById('current-date');
+                if (dateElem) {
+                    dateElem.innerText = dayName + ', ' + dd + '/' + mm + '/' + yyyy;
+                }
 
-            // Định dạng ngày tháng năm
-            const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' };
-            let dateString = now.toLocaleDateString('vi-VN', options);
-            dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-            document.getElementById('current-date').innerText = dateString;
+                var hh = now.getHours();
+                var min = now.getMinutes();
+                var sec = now.getSeconds();
 
-            // Định dạng đồng hồ
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            
-            document.getElementById('current-time').innerText = `${hours}:${minutes}:${seconds}`;
-        }
+                if (hh < 10) hh = '0' + hh;
+                if (min < 10) min = '0' + min;
+                if (sec < 10) sec = '0' + sec;
 
-        updateDateTime();
-        setInterval(updateDateTime, 1000);
-
-        // Điều khiển Modal Hướng dẫn
-        const modal = document.getElementById('guideModal');
-
-        function openModal() {
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Đóng modal khi bấm ra ngoài vùng nội dung
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
+                var timeElem = document.getElementById('current-time');
+                if (timeElem) {
+                    timeElem.innerText = hh + ':' + min + ':' + sec;
+                }
             }
-        }
-    </script>
 
+            // Chạy ngay lập tức khi load tới đây và lặp lại mỗi giây
+            updateClock();
+            setInterval(updateClock, 1000);
+        })();
+    </script>
 </body>
 </html>
